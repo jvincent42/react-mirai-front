@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+  "rules": {
+    "no-console": [2, { "allow": ["info", "warn", "error"] }],
+    "no-return-assign": [0],
+    "no-sequences": [0],
+    "no-underscore-dangle": [0]
+  }
+}
