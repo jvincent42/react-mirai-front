@@ -1,10 +1,14 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb-base",
+  "extends": [
+    "airbnb-base",
+    "plugin:react/recommended"
+  ],
   "rules": {
     "no-console": [2, { "allow": ["info", "warn", "error"] }],
     "no-return-assign": [0],
     "no-sequences": [0],
-    "no-underscore-dangle": [0]
+    "no-underscore-dangle": [0],
+    "class-methods-use-this": [0]
   }
 }
