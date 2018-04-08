@@ -10,6 +10,12 @@ module.exports = {
     path: resolve('public'),
     publicPath: '/',
   },
+  resolve: {
+    alias: {
+      utils: resolve(__dirname, 'src/App/utils'),
+      components: resolve(__dirname, 'src/App/components'),
+    },
+  },
   module: {
     rules: [
       {

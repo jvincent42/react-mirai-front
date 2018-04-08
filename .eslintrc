@@ -4,6 +4,9 @@
     "airbnb-base",
     "plugin:react/recommended"
   ],
+  "settings": {
+    "import/resolver": "webpack"
+  },
   "rules": {
     "no-console": [2, { "allow": ["info", "warn", "error"] }],
     "no-return-assign": [0],

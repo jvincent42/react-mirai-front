@@ -3,16 +3,22 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { AppContainer } from 'react-hot-loader';
+import createBrowserHistory from 'history/createBrowserHistory';
+import { Router } from 'react-router-dom';
 
 import App from './App';
 import theme from './App/theme';
 
 
+const history = createBrowserHistory();
+
 const render = (Component) => {
   ReactDom.render(
     <AppContainer>
       <ThemeProvider theme={theme}>
-        <Component />
+        <Router history={history}>
+          <Component />
+        </Router>
       </ThemeProvider>
     </AppContainer>,
     document.getElementById('app'),
