@@ -1,24 +1,25 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDom from 'react-dom';
-import { ThemeProvider } from 'styled-components';
 import { AppContainer } from 'react-hot-loader';
-import createBrowserHistory from 'history/createBrowserHistory';
-import { Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import theme from './App/theme';
+import store from './App/store';
 
-
-const history = createBrowserHistory();
 
 const render = (Component) => {
   ReactDom.render(
     <AppContainer>
       <ThemeProvider theme={theme}>
-        <Router history={history}>
-          <Component />
-        </Router>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Component />
+          </BrowserRouter>
+        </Provider>
       </ThemeProvider>
     </AppContainer>,
     document.getElementById('app'),
@@ -26,7 +27,6 @@ const render = (Component) => {
 };
 
 render(App);
-
 
 if (module.hot) {
   module.hot.accept('./App', () => {

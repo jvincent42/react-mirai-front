@@ -13,12 +13,14 @@ import NotFound from './notfound';
 class App extends Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Dashboard}/>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/admin" component={restricted(Admin)} />
-        <Route component={NotFound} />
-      </Switch>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Dashboard}/>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/admin" component={restricted(Admin)} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     );
   }
 }
