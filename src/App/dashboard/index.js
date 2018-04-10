@@ -1,16 +1,25 @@
 import React, { PureComponent } from 'react';
+import gql from 'graphql-tag';
 
-import Button from '../components/Button';
+import Button from 'components/Button';
+import WithData from 'components/WithData';
+
+
+const GET_MOVIES = gql`
+  query {
+    hello
+  }
+`;
 
 
 class Dashboard extends PureComponent {
   render() {
     return (
       <div>
-        <Button>My button</Button>
-        <Button block>My button</Button>
-        <Button type="primary" block>My button</Button>
-        <Button type="secondary" block>My button</Button>
+        <Button block>My button !</Button>
+        <WithData query={GET_MOVIES}>
+          {({ hello }) => <div>{hello}</div>}
+        </WithData>
       </div>
     );
   }

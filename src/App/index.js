@@ -26,4 +26,8 @@ class App extends Component {
 }
 
 
+App.propTypes = {};
+
+App.defaultProps = {};
+
 export default hot(module)(App);
