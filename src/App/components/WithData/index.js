@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import Button from 'components/Button';
+class WithData extends PureComponent {
+  static propTypes = {
+    query: PropTypes.object.isRequired,
+    children: PropTypes.func.isRequired,
+    LoadingComponent: PropTypes.func,
+    ErrorComponent: PropTypes.func,
+  }
 
+  static defaultProps = {
+    LoadingComponent: null,
+    ErrorComponent: null,
+  }
 
-const WithData = ({ query, children: Children }) => (
-  <Query query={query}>
-    {({
-      loading,
-      error,
-      data,
-      refetch,
-    }) => {
-      if (loading) return <div>Loading ...</div>;
-      if (error) return <div>Error</div>;
-      return (
-        <div>
-          <Children {...data} />
-          <Button type="secondary" onClick={() => refetch()}>Refetch</Button>
-        </div>
-      );
-    }}
-  </Query>
-);
+  render() {
+    const {
+      query,
+      children: Children,
+      LoadingComponent,
+      ErrorComponent,
+      ...props
+    } = this.props;
+    return (
+      <Query query={query} {...props}>
+        {({
+          loading,
+          error,
+          data,
+          refetch,
+        }) => {
+          if (loading) {
+            return LoadingComponent
+             ? <LoadingComponent />
+             : <div>Loading ...</div>;
+          }
+          if (error) {
+            return ErrorComponent
+              ? <ErrorComponent error={error} />
+              : <div>Error</div>;
+          }
+          return (
+            <Children {...data} refetch={refetch} />
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
-
-WithData.propTypes = {
-  query: PropTypes.object.isRequired,
-  children: PropTypes.func.isRequired,
-};
 
 export default WithData;

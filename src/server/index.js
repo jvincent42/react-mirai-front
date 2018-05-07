@@ -27,7 +27,7 @@ server.get('*', (req, res) => {
     const apolloClient = new ApolloClient({
       ssrMode: true,
       link: createHttpLink({
-        uri: 'https://55pqv4kj39.lp.gql.zone/graphql',
+        uri: 'http://localhost:8081/graphql',
         fetch,
       }),
       cache: new InMemoryCache(),

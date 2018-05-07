@@ -4,10 +4,11 @@ import { lighten, darken } from 'polished';
 
 
 const getColor = ({ theme, type }) => theme.button[type];
+const getDisplay = ({ block }) => block ? 'block' : 'inline-block';
 
 
 const Button = styled.button`
-  display: ${props => props.block ? 'block' : 'inline-block'}
+  display: ${getDisplay}
   background-color: ${getColor};
   color: white;
   border: none;
